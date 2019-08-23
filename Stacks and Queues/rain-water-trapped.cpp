@@ -4,19 +4,11 @@ int Solution::trap(const vector<int> &a) {
     int lmx = 0, rmx = 0;
     while(lo <= hi){
         if(a[lo] < a[hi]){
-            if(a[lo] > lmx){
-                lmx = a[lo];
-            }else{
-                res += lmx - a[lo];
-            }
-            lo++;
+            lmx = max(lmx, a[lo]);
+            res += lmx - a[lo++];
         }else{
-            if(a[hi] > rmx){
-                rmx = a[hi]; 
-            }else{
-                res += rmx - a[hi]; 
-            }
-            hi--;
+            rmx = max(rmx, a[hi]);
+            res += rmx - a[hi--];
         }
     }
     return res;
