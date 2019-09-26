@@ -5,7 +5,7 @@ vector<vector<int> > Solution::levelOrder(TreeNode* A) {
     queue<TreeNode*> q;
     q.push(A);
     
-    while(q.empty()!=true){
+    while(!q.empty()){
         TreeNode* node=q.front();
         q.pop();
 
