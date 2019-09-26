@@ -1,28 +1,32 @@
 vector<vector<int> > Solution::levelOrder(TreeNode* A) {
-    vector<vector<int>> res;
-    vector<int> temp;
+    int lvl = 1, nextLevel = 0;
+    vector<vector<int> > result;
+    vector<int> curr;
     queue<TreeNode*> q;
-    queue<int> level;
-    
     q.push(A);
-    level.push(0);
     
-    while(!q.empty()){
-        TreeNode* curr = q.front(); q.pop();
-        int lvl = level.front(); level.pop();
+    while(q.empty()!=true){
+        TreeNode* node=q.front();
+        q.pop();
+
+        if(node->left!=NULL){
+            q.push(node->left);
+            nextLevel++;
+        }    
+    
+        if(node->right!=NULL){
+            q.push(node->right);
+            nextLevel++;
+        }
         
-        if(res.size() != lvl + 1){
-            res.push_back(temp);
-        }
-        res[lvl].push_back(curr->val);
-        if(curr->left != NULL){
-            q.push(curr->left);
-            level.push(lvl+1);
-        }
-        if(curr->right != NULL){
-            q.push(curr->right);
-            level.push(lvl+1);
+        lvl--;
+        curr.push_back(node->val);
+        if (lvl == 0) {
+            result.push_back(curr);
+            lvl = nextLevel;
+            nextLevel = 0;
+            curr.clear();
         }
     }
-    return res;
+    return result;
 }
