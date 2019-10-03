@@ -33,7 +33,7 @@ class Solution {
             int r = top.first.first, c = top.first.second, dir = top.second;
             int distance = dist[r][c][dir] + 1;
             int r2 = dir == HOR ? r : r + 1;
-            int c2 = dir == HOR ? c + 1 : c;
+            int c2 = dir == VER ? c : c + 1;
 
             if (valid(r, c + 1) && valid(r2, c2 + 1) && !grid[r][c + 1] && !grid[r2][c2 + 1])
                 bfs_check(r, c + 1, dir, distance);
